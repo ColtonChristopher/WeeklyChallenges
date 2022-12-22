@@ -1,53 +1,139 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChallengesWithTestsMark8
 {
     public class ChallengesSet03
     {
-        public bool ArrayContainsAFalse(bool[] vals)
+        public static bool ArrayContainsAFalse(bool[] vals)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < vals.Length; i++)
+            {
+                if (vals[i])
+                {
+                    return true;
+                }
+                
+            }
+            return false;
+        }
+        
+          public bool PasswordContainsUpperLowerAndNumber(string password)
+            {
+            var isLower = false;
+            var isUpper = false;
+            var isNumber = false;
+
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (char.IsLower(password[i]))
+                {
+                    isLower = true;
+                }
+
+                if (char.IsUpper(password[i]))
+                {
+                    isUpper = true;
+                }
+
+                if (char.IsNumber(password[i]))
+                {
+                    isNumber = true;
+                }
+            }
+
+            if (isLower && isUpper && isNumber)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public bool IsSumOfOddsOdd(IEnumerable<int> numbers)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool PasswordContainsUpperLowerAndNumber(string password)
-        {
-            throw new NotImplementedException();
-        }
 
         public char GetFirstLetterOfString(string val)
         {
-            throw new NotImplementedException();
+            return val.First();
         }
 
         public char GetLastLetterOfString(string val)
         {
-            throw new NotImplementedException();
+            return val[val.Length - 1];
         }
 
         public decimal Divide(decimal dividend, decimal divisor)
         {
-            throw new NotImplementedException();
+            if (divisor == 0)
+            {
+                return 0;
+            }
+            return dividend / divisor;
         }
 
         public int LastMinusFirst(int[] nums)
         {
-            throw new NotImplementedException();
+            return nums[nums.Length - 1] - nums[0];
         }
 
         public int[] GetOddsBelow100()
         {
-            throw new NotImplementedException();
+            var list = new List<int>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    list.Add(i);
+                }
+            }
+            return list.ToArray();
         }
 
         public void ChangeAllElementsToUppercase(string[] words)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = words[i].ToUpper();
+            }
+
         }
+
+        public char FindMissingLetter(char[] array)
+        {
+            char[] letters = "abcdefghijghklmnopqrstuvwxyz".ToCharArray();
+
+            if (char.IsUpper(array[0]))
+            {
+                letters = "abcdefghijghklmnopqrstuvwxyz".ToUpper().ToCharArray();
+            }
+
+            var place = 0;
+
+            for (int j = 0; j < letters.Length; j++)
+            {
+                if (array[0] == letters[j])
+                {
+                    place = j;
+                    break;
+                }
+            }
+                char missing = ' ';
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (array[i] != letters[place])
+                    {
+                        missing = letters[place];
+                        break;
+                    }
+                    place++;
+                }
+                return missing;
+            
+        }
+
     }
 }
